@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeno AI - Rajputana کا ڈیجیٹل ورکر</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 10px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+        .header h1 { font-size: 28px; margin-bottom: 5px; }
+        .key-section { padding: 15px; background: #fff3cd; border-bottom: 2px solid #ffc107; }
+        .key-input { width: 100%; padding: 12px; border: 2px solid #ffc107; border-radius: 10px; font-size: 14px; }
+        .save-key-btn { width: 100%; padding: 12px; margin-top: 10px; background: #28a745; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; }
+        .chat-container { height: 500px; overflow-y: auto; padding: 20px; background: #f8f9fa; }
+        .message { margin: 10px 0; padding: 12px 16px; border-radius: 15px; max-width: 80%; }
+        .user-msg { background: #667eea; color: white; margin-left: auto; text-align: right; }
+        .ai-msg { background: white; color: #333; border: 1px solid #ddd; }
+        .input-area { padding: 15px; background: white; border-top: 2px solid #eee; display: flex; gap: 10px; }
+        .input-area input { flex: 1; padding: 15px; border: 2px solid #667eea; border-radius: 25px; font-size: 16px; }
+        .mic-btn { padding: 15px 25px; background: #dc3545; color: white; border: none; border-radius: 25px; font-size: 18px; cursor: pointer; }
+        .mic-btn.recording { background: #28a745; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .feature-badge { display: inline-block; background: #667eea; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Zeno AI</h1>
+            <p>Rajputana کا ڈیجیٹل ورکر - 400+ فیچرز</p>
+        </div>
+
+        <div class="key-section" id="keySection">
+            <p><b>🔑 Step 1:</b> اپنی Google Gemini API Key یہاں ڈالیں</p>
+            <input type="password" class="key-input" id="apiKeyInput" placeholder="AIza... اپنی Key پیسٹ کریں">
+            <button class="save-key-btn" onclick="saveKey()">🔒 Key محفوظ کریں</button>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="message ai-msg">
+                السلام علیکم سر! میں Zeno AI ہوں 👑<br>
+                میں 400+ کام کر سکتا ہوں۔ بول کر حکم دیں یا لکھیں۔<br>
+                <span class="feature-badge">WhatsApp</span>
+                <span class="feature-badge">Sales</span>
+                <span class="feature-badge">Voice</span>
+                <span class="feature-badge">AI</span>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="سر حکم کریں..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="mic-btn" id="micBtn" onclick="toggleRecording()">🎤</button>
+        </div>
+    </div>
+
+    <script>
+        let API_KEY = localStorage.getItem('gemini_key') || '';
+        let recognition;
+        let isRecording = false;
+
+        // Key Check
+        if(API_KEY) {
+            document.getElementById('keySection').style.display = 'none';
+            addMessage('Zeno AI ایکٹیو ہے سر۔ حکم کریں', 'ai');
+        }
+
+        function saveKey() {
+            API_KEY = document.getElementById('apiKeyInput').value.trim();
+            if(API_KEY.startsWith('AIza')) {
+                localStorage.setItem('gemini_key', API_KEY);
+                document.getElementById('keySection').style.display = 'none';
+                addMessage('واہ سر! Key سیو ہو گئی۔ اب Zeno AI تیار ہے', 'ai');
+            } else {
+                alert('سر غلط Key ہے۔ AIza سے شروع ہونی
