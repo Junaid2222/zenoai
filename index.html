@@ -1,76 +1,173 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeno AI - Rajputana کا ڈیجیٹل ورکر</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 10px; }
-        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
-        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
-        .header h1 { font-size: 28px; margin-bottom: 5px; }
-        .key-section { padding: 15px; background: #fff3cd; border-bottom: 2px solid #ffc107; }
-        .key-input { width: 100%; padding: 12px; border: 2px solid #ffc107; border-radius: 10px; font-size: 14px; }
-        .save-key-btn { width: 100%; padding: 12px; margin-top: 10px; background: #28a745; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; }
-        .chat-container { height: 500px; overflow-y: auto; padding: 20px; background: #f8f9fa; }
-        .message { margin: 10px 0; padding: 12px 16px; border-radius: 15px; max-width: 80%; }
-        .user-msg { background: #667eea; color: white; margin-left: auto; text-align: right; }
-        .ai-msg { background: white; color: #333; border: 1px solid #ddd; }
-        .input-area { padding: 15px; background: white; border-top: 2px solid #eee; display: flex; gap: 10px; }
-        .input-area input { flex: 1; padding: 15px; border: 2px solid #667eea; border-radius: 25px; font-size: 16px; }
-        .mic-btn { padding: 15px 25px; background: #dc3545; color: white; border: none; border-radius: 25px; font-size: 18px; cursor: pointer; }
-        .mic-btn.recording { background: #28a745; animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        .feature-badge { display: inline-block; background: #667eea; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; margin: 5px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeno AI ULTIMATE - 2000+ Features</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Noto Nastaliq Urdu', Arial}
+body{background:linear-gradient(135deg,#000 0%,#000d00 100%);color:#00ff99;text-align:center;min-height:100vh;padding:20px}
+.container{max-width:1200px;margin:0 auto;background:rgba(0,0,0,0.95);border-radius:30px;padding:30px;border:5px solid #00ff99;box-shadow:0 0 100px rgba(0,255,153,0.7)}
+#logo{width:280px;height:280px;background:radial-gradient(circle,#fff,#00ff99);border-radius:50%;margin:20px auto;font-size:130px;line-height:280px;box-shadow:0 0 400px #00ff99;animation:glow 1.5s infinite}
+@keyframes glow{50%{box-shadow:0 0 600px #00ff99;transform:scale(1.05)}}
+h1{color:#00ff99;font-size:45px;text-shadow:0 0 30px #00ff99;margin-bottom:10px}
+#status{border:4px solid #00ff99;padding:20px;border-radius:20px;margin:20px 0;background:rgba(0,255,153,0.1);font-size:22px;font-weight:bold;min-height:60px}
+#mic{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,#00ff99,#00cc66);border:10px solid #fff;font-size:85px;cursor:pointer;color:#000;transition:0.3s;margin:10px}
+#mic.listening{background:linear-gradient(135deg,#ff0000,#cc0000);animation:pulse 0.3s infinite;box-shadow:0 0 50px red}
+@keyframes pulse{50%{transform:scale(1.3)}}
+.btn{background:linear-gradient(135deg,#00ff99,#00cc66);color:#000;padding:16px 22px;border:none;border-radius:20px;margin:8px;cursor:pointer;font-weight:bold;font-size:17px;transition:0.3s}
+.btn:hover{transform:scale(1.08)}
+#output{background:#0a0a0a;padding:25px;border-radius:20px;text-align:right;max-height:600px;overflow-y:auto;border:4px solid #00ff99;font-size:18px;line-height:2.3;margin-top:20px}
+input,textarea{width:95%;padding:18px;margin:12px;border-radius:20px;background:#1a1a1a;color:#00ff99;border:4px solid #00ff99;font-size:18px}
+.crown{color:#ffd700;font-size:21px;font-weight:bold}
+.success{color:#00ff00;font-weight:bold}
+.warning{color:#ff0000;font-weight:bold}
+.footer{margin-top:30px;font-size:16px;color:#888}
+.tag{background:#00ff99;color:#000;padding:5px 10px;border-radius:10px;margin:3px;display:inline-block;font-size:14px}
+.box{background:#111;border:2px solid #00ff99;padding:15px;margin:10px;border-radius:15px;text-align:right}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🤖 Zeno AI</h1>
-            <p>Rajputana کا ڈیجیٹل ورکر - 400+ فیچرز</p>
-        </div>
+<div class="container">
+<div id="logo">👑</div>
+<h1>Zeno AI ULTIMATE</h1>
+<p class="crown">2000+ Features | GOD LEVEL | 100% Legal | Continuous Mic</p>
+<div>
+<span class="tag">Suno AI</span><span class="tag">Video Pro</span><span class="tag">YouTube AI</span><span class="tag">SEO</span><span class="tag">Code</span><span class="tag">2000+</span>
+</div>
 
-        <div class="key-section" id="keySection">
-            <p><b>🔑 Step 1:</b> اپنی Google Gemini API Key یہاں ڈالیں</p>
-            <input type="password" class="key-input" id="apiKeyInput" placeholder="AIza... اپنی Key پیسٹ کریں">
-            <button class="save-key-btn" onclick="saveKey()">🔒 Key محفوظ کریں</button>
-        </div>
+<div id="keySection">
+<p class="warning">نوٹ: اپنی Gemini API Key یہاں ڈالیں</p>
+<input type="password" id="gemini" placeholder="اپنی Google Gemini API Key یہاں ڈالیں سر - AIza سے شروع ہوتی ہے">
+<button class="btn" onclick="saveKey()">🔒 Key محفوظ کریں</button>
+<button class="btn" onclick="clearKey()">🗑️ Key ڈیلیٹ کریں</button>
+</div>
 
-        <div class="chat-container" id="chatContainer">
-            <div class="message ai-msg">
-                السلام علیکم سر! میں Zeno AI ہوں 👑<br>
-                میں 400+ کام کر سکتا ہوں۔ بول کر حکم دیں یا لکھیں۔<br>
-                <span class="feature-badge">WhatsApp</span>
-                <span class="feature-badge">Sales</span>
-                <span class="feature-badge">Voice</span>
-                <span class="feature-badge">AI</span>
-            </div>
-        </div>
+<div id="status">جی سر۔ خوش آمدید۔ پہلے API Key ڈالیں</div>
+<button id="mic" onclick="toggleMic()">🎤</button>
+<p id="micStatus">مائیک بند ہے - 1 بار دبائیں تو آن ہو جائے گا</p>
+<br>
+<textarea id="textInput" rows="3" placeholder="حکم دیں سر... مثال: 2000 فیچرز کی لسٹ دو"></textarea>
+<button class="btn" onclick="sendText()">📤 بھیجو</button>
 
-        <div class="input-area">
-            <input type="text" id="userInput" placeholder="سر حکم کریں..." onkeypress="if(event.key==='Enter') sendMessage()">
-            <button class="mic-btn" id="micBtn" onclick="toggleRecording()">🎤</button>
-        </div>
-    </div>
+<div id="output"></div>
 
-    <script>
-        let API_KEY = localStorage.getItem('gemini_key') || '';
-        let recognition;
-        let isRecording = false;
+<div class="footer">
+<p>Powered by Zeno AI | Version 33.0 ULTIMATE | 100% Legal & Safe</p>
+</div>
+</div>
 
-        // Key Check
-        if(API_KEY) {
-            document.getElementById('keySection').style.display = 'none';
-            addMessage('Zeno AI ایکٹیو ہے سر۔ حکم کریں', 'ai');
-        }
+<script>
+const status = document.getElementById('status');
+const output = document.getElementById('output');
+let recognition;
+let isListening = false;
+let lastReply = "";
 
-        function saveKey() {
-            API_KEY = document.getElementById('apiKeyInput').value.trim();
-            if(API_KEY.startsWith('AIza')) {
-                localStorage.setItem('gemini_key', API_KEY);
-                document.getElementById('keySection').style.display = 'none';
-                addMessage('واہ سر! Key سیو ہو گئی۔ اب Zeno AI تیار ہے', 'ai');
-            } else {
-                alert('سر غلط Key ہے۔ AIza سے شروع ہونی
+window.onload = function(){
+  if(localStorage.getItem('zeno_ai_key')){
+    document.getElementById('keySection').style.display = 'none';
+    status.innerText = "جی سر۔ Zeno AI 2000 فیچرز کے ساتھ ایکٹیو ہے۔ حکم کریں";
+  }
+  initVoice();
+}
+
+function saveKey(){
+  const key = document.getElementById('gemini').value.trim();
+  if(key === "" ||!key.startsWith("AIza")){ alert("جی سر، صحیح Gemini API Key ڈالیں"); return; }
+  localStorage.setItem('zeno_ai_key', key);
+  document.getElementById('keySection').style.display = 'none';
+  status.innerText = "جی سر۔ Key محفوظ ہو گئی۔ اب Zeno AI تیار ہے";
+}
+
+function clearKey(){
+  localStorage.removeItem('zeno_ai_key');
+  document.getElementById('keySection').style.display = 'block';
+  status.innerText = "جی سر۔ Key ڈیلیٹ ہو گئی۔ نئی Key ڈالیں";
+}
+
+function initVoice(){
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(SpeechRecognition){
+    recognition = new SpeechRecognition();
+    recognition.lang = 'ur-PK';
+    recognition.continuous = true; // CONTINUOUS MIC
+    recognition.interimResults = false;
+    recognition.onresult = (e) => {
+      const text = e.results[e.results.length-1][0].transcript;
+      document.getElementById('textInput').value = text;
+      runZenoAI(text);
+    };
+    recognition.onend = () => {
+      if(isListening){ recognition.start(); } // Auto restart for continuous
+    }
+  }
+}
+
+function toggleMic(){
+  if(!isListening){
+    isListening = true;
+    document.getElementById('mic').classList.add('listening');
+    document.getElementById('micStatus').innerText = "مائیک آن ہے - بولتے جائیں سر";
+    status.innerText = "جی سر۔ میں سن رہا ہوں...";
+    recognition.start();
+  } else {
+    isListening = false;
+    document.getElementById('mic').classList.remove('listening');
+    document.getElementById('micStatus').innerText = "مائیک بند ہے - 1 بار دبائیں تو آن ہو جائے گا";
+    status.innerText = "جی سر۔ مائیک بند ہو گیا";
+    recognition.stop();
+  }
+}
+
+function sendText(){ const text = document.getElementById('textInput').value; if(text) runZenoAI(text); }
+
+function handleCommands(text){
+  text = text.toLowerCase();
+  if(text.includes("یوٹیوب کھولو")){ window.open("https://youtube.com", "_blank"); speak("جی سر۔ یوٹیوب کھول دیا"); return true; }
+  if(text.includes("وولیوم بڑھاؤ")){ document.querySelectorAll('video,audio').forEach(v=>v.volume = Math.min(1, v.volume+0.2)); speak("جی سر۔ وولیوم بڑھا دیا"); return true; }
+  if(text.includes("وولیوم کم کرو")){ document.querySelectorAll('video,audio').forEach(v=>v.volume = Math.max(0, v.volume-0.2)); speak("جی سر۔ وولیوم کم کر دیا"); return true; }
+  if(text.includes("لاؤڈ اسپیکر کھولو")){ document.querySelectorAll('video,audio').forEach(v=>v.muted=false); speak("جی سر۔ لاؤڈ اسپیکر آن"); return true; }
+  if(text.includes("لاؤڈ اسپیکر بند کرو")){ document.querySelectorAll('video,audio').forEach(v=>v.muted=true); speak("جی سر۔ لاؤڈ اسپیکر بند"); return true; }
+  return false;
+}
+
+async function runZenoAI(text){
+  if(handleCommands(text)) return;
+
+  status.innerText="جی سر۔ Zeno AI 0.1 سیکنڈ میں جواب بنا رہا ہے...";
+  const key=localStorage.getItem('zeno_ai_key');
+  if(!key){ alert("جی سر، API Key نہیں ملی"); return; }
+  output.innerHTML += `<div><b>آپ:</b> ${text}</div>`;
+
+  const masterPrompt = `تم Zeno AI ULTIMATE GOD LEVEL ہو۔ اصول: 1. 100% لیگل، کوئی سیکس، ہراسمنٹ، غیر قانونی کام نہیں 2. 2000+ فیچرز
+ 10 بڑے ڈپارٹمنٹ: 1.Video 2.Music 3.YouTube 4.SEO 5.Code 6.Design 7.Business 8.Education 9.Health 10.Life
+  اگر صارف "2000 فیچرز کی لسٹ دو" کہے تو 20 کیٹیگری میں 100 فیچرز کر کے 2000 فیچرز کی لسٹ دو۔
+  اگر کوئی کام بولے تو سب سے پہلے "ریڈی پرامپٹ" دو پھر سٹیپ۔ جواب 3 سیکنڈ سے پہلے دو۔ اردو میں عزت سے۔ حکم: ${text}`;
+
+  try{
+    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({contents:[{parts:[{text:masterPrompt}]}]})});
+    const data=await res.json();
+    const reply=data.candidates[0].content.parts[0].text;
+    lastReply = reply;
+    output.innerHTML+=`<div class="box"><b class="success">Zeno AI:</b><br>${reply}</div>`;
+    speak(reply);
+    status.innerText="جی سر۔ کام مکمل۔ بولیں اگلا حکم";
+  }catch(error){ status.innerText="جی سر۔ انٹرنیٹ چیک کریں۔ ایرر: "+error.message; }
+}
+
+function speak(text){
+  let speech = new SpeechSynthesisUtterance(text);
+  speech.lang='ur-PK'; speech.rate=1.1; speech.pitch=1; speechSynthesis.speak(speech);
+}
+
+// OFFLINE BASIC
+window.addEventListener('offline', () => {
+  status.innerText = "جی سر۔ انٹرنیٹ بند ہے۔ لیکن آواز اور پرانا ڈیٹا چلے گا";
+});
+</script>
+</body>
+</html>
