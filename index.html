@@ -34,14 +34,13 @@ input,textarea{width:95%;padding:18px;margin:12px;border-radius:20px;background:
 <h1>Zeno AI ULTIMATE</h1>
 <p class="crown">2000+ Features | GOD LEVEL | 100% Legal | Continuous Mic</p>
 <div>
-<span class="tag">Suno AI</span><span class="tag">Video Pro</span><span class="tag">YouTube AI</span><span class="tag">SEO</span><span class="tag">Code</span><span class="tag">2000+</span>
+<span class="tag">Suno AI</span><span class="tag">Video Pro</span><span class="tag">YouTube AI</span><span class="tag">SEO</span><span class="tag">Code</span>
 </div>
 
 <div id="keySection">
 <p class="warning">نوٹ: اپنی Gemini API Key یہاں ڈالیں</p>
 <input type="password" id="gemini" placeholder="اپنی Google Gemini API Key یہاں ڈالیں سر - AIza سے شروع ہوتی ہے">
 <button class="btn" onclick="saveKey()">🔒 Key محفوظ کریں</button>
-<button class="btn" onclick="clearKey()">🗑️ Key ڈیلیٹ کریں</button>
 </div>
 
 <div id="status">جی سر۔ خوش آمدید۔ پہلے API Key ڈالیں</div>
@@ -54,7 +53,7 @@ input,textarea{width:95%;padding:18px;margin:12px;border-radius:20px;background:
 <div id="output"></div>
 
 <div class="footer">
-<p>Powered by Zeno AI | Version 33.0 ULTIMATE | 100% Legal & Safe</p>
+<p>Powered by Zeno AI | Version 33.0 ULTIMATE</p>
 </div>
 </div>
 
@@ -81,26 +80,19 @@ function saveKey(){
   status.innerText = "جی سر۔ Key محفوظ ہو گئی۔ اب Zeno AI تیار ہے";
 }
 
-function clearKey(){
-  localStorage.removeItem('zeno_ai_key');
-  document.getElementById('keySection').style.display = 'block';
-  status.innerText = "جی سر۔ Key ڈیلیٹ ہو گئی۔ نئی Key ڈالیں";
-}
-
 function initVoice(){
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if(SpeechRecognition){
     recognition = new SpeechRecognition();
     recognition.lang = 'ur-PK';
-    recognition.continuous = true; // CONTINUOUS MIC
-    recognition.interimResults = false;
+    recognition.continuous = true;
     recognition.onresult = (e) => {
       const text = e.results[e.results.length-1][0].transcript;
       document.getElementById('textInput').value = text;
       runZenoAI(text);
     };
     recognition.onend = () => {
-      if(isListening){ recognition.start(); } // Auto restart for continuous
+      if(isListening){ recognition.start(); }
     }
   }
 }
@@ -110,41 +102,24 @@ function toggleMic(){
     isListening = true;
     document.getElementById('mic').classList.add('listening');
     document.getElementById('micStatus').innerText = "مائیک آن ہے - بولتے جائیں سر";
-    status.innerText = "جی سر۔ میں سن رہا ہوں...";
     recognition.start();
   } else {
     isListening = false;
     document.getElementById('mic').classList.remove('listening');
     document.getElementById('micStatus').innerText = "مائیک بند ہے - 1 بار دبائیں تو آن ہو جائے گا";
-    status.innerText = "جی سر۔ مائیک بند ہو گیا";
     recognition.stop();
   }
 }
 
 function sendText(){ const text = document.getElementById('textInput').value; if(text) runZenoAI(text); }
 
-function handleCommands(text){
-  text = text.toLowerCase();
-  if(text.includes("یوٹیوب کھولو")){ window.open("https://youtube.com", "_blank"); speak("جی سر۔ یوٹیوب کھول دیا"); return true; }
-  if(text.includes("وولیوم بڑھاؤ")){ document.querySelectorAll('video,audio').forEach(v=>v.volume = Math.min(1, v.volume+0.2)); speak("جی سر۔ وولیوم بڑھا دیا"); return true; }
-  if(text.includes("وولیوم کم کرو")){ document.querySelectorAll('video,audio').forEach(v=>v.volume = Math.max(0, v.volume-0.2)); speak("جی سر۔ وولیوم کم کر دیا"); return true; }
-  if(text.includes("لاؤڈ اسپیکر کھولو")){ document.querySelectorAll('video,audio').forEach(v=>v.muted=false); speak("جی سر۔ لاؤڈ اسپیکر آن"); return true; }
-  if(text.includes("لاؤڈ اسپیکر بند کرو")){ document.querySelectorAll('video,audio').forEach(v=>v.muted=true); speak("جی سر۔ لاؤڈ اسپیکر بند"); return true; }
-  return false;
-}
-
 async function runZenoAI(text){
-  if(handleCommands(text)) return;
-
-  status.innerText="جی سر۔ Zeno AI 0.1 سیکنڈ میں جواب بنا رہا ہے...";
+  status.innerText="جی سر۔ Zeno AI جواب بنا رہا ہے...";
   const key=localStorage.getItem('zeno_ai_key');
   if(!key){ alert("جی سر، API Key نہیں ملی"); return; }
   output.innerHTML += `<div><b>آپ:</b> ${text}</div>`;
 
-  const masterPrompt = `تم Zeno AI ULTIMATE GOD LEVEL ہو۔ اصول: 1. 100% لیگل، کوئی سیکس، ہراسمنٹ، غیر قانونی کام نہیں 2. 2000+ فیچرز
- 10 بڑے ڈپارٹمنٹ: 1.Video 2.Music 3.YouTube 4.SEO 5.Code 6.Design 7.Business 8.Education 9.Health 10.Life
-  اگر صارف "2000 فیچرز کی لسٹ دو" کہے تو 20 کیٹیگری میں 100 فیچرز کر کے 2000 فیچرز کی لسٹ دو۔
-  اگر کوئی کام بولے تو سب سے پہلے "ریڈی پرامپٹ" دو پھر سٹیپ۔ جواب 3 سیکنڈ سے پہلے دو۔ اردو میں عزت سے۔ حکم: ${text}`;
+  const masterPrompt = `تم Zeno AI ULTIMATE GOD LEVEL ہو۔ اصول: 1. 100% لیگل 2. 2000+ فیچرز۔ جواب اردو میں عزت سے دو۔ حکم: ${text}`;
 
   try{
     const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,{
@@ -154,20 +129,9 @@ async function runZenoAI(text){
     const reply=data.candidates[0].content.parts[0].text;
     lastReply = reply;
     output.innerHTML+=`<div class="box"><b class="success">Zeno AI:</b><br>${reply}</div>`;
-    speak(reply);
-    status.innerText="جی سر۔ کام مکمل۔ بولیں اگلا حکم";
+    status.innerText="جی سر۔ کام مکمل۔ اگلا حکم دیں";
   }catch(error){ status.innerText="جی سر۔ انٹرنیٹ چیک کریں۔ ایرر: "+error.message; }
 }
-
-function speak(text){
-  let speech = new SpeechSynthesisUtterance(text);
-  speech.lang='ur-PK'; speech.rate=1.1; speech.pitch=1; speechSynthesis.speak(speech);
-}
-
-// OFFLINE BASIC
-window.addEventListener('offline', () => {
-  status.innerText = "جی سر۔ انٹرنیٹ بند ہے۔ لیکن آواز اور پرانا ڈیٹا چلے گا";
-});
 </script>
 </body>
 </html>
