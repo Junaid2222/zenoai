@@ -19,7 +19,7 @@
 .ai { background:#f1f3f4; margin-right:auto; border-bottom-left-radius:4px; }
 .footer { display:flex; padding:12px 20px; border-top:1px solid #e0e0e0; gap:10px; background:#fff; }
 .input-box { flex:1; border:1px solid #dadce0; border-radius:24px; padding:12px 18px; font-size:15px; }
-.mic-btn { background:#1a73e8; border:none; border-radius:50%; width:48px; height:48px; color:white; font-size:22px; cursor:pointer; }
+.btn { background:#1a73e8; border:none; border-radius:50%; width:48px; height:48px; color:white; font-size:22px; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -32,11 +32,12 @@
   <button class="save-btn" onclick="saveKey()">Save Key</button>
 </div>
 <div class="chat-area" id="chat">
-  <div class="msg ai">Welcome to Zeno AI GOD +2000<br>Apna Gemini API Key save karein aur sawal poochein.</div>
+  <div class="msg ai">Welcome to Zeno AI GOD +2000<br>Apna Gemini API Key save karein.</div>
 </div>
 <div class="footer">
   <input type="text" id="userInput" class="input-box" placeholder="Ask Zeno anything..." onkeypress="if(event.key==='Enter') sendMessage()">
-  <button class="mic-btn" onclick="sendMessage()">➤</button>
+  <button class="btn" onclick="startVoice()">🎤</button>
+  <button class="btn" onclick="sendMessage()">➤</button>
 </div>
 
 <script>
@@ -51,17 +52,18 @@ async function sendMessage() {
   const key = localStorage.getItem('geminiKey');
   if(!message) return;
   if(!key) { alert('Pehle API Key save karein'); return; }
-
   addMsg(message, 'user');
   input.value = '';
+  getAIResponse(message, key);
+}
 
+async function getAIResponse(message, key) {
   const chat = document.getElementById('chat');
   const loading = document.createElement('div');
   loading.className = 'msg ai';
   loading.innerText = 'Zeno soch raha hai...';
   chat.appendChild(loading);
   chat.scrollTop = chat.scrollHeight;
-
   try {
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
       method: 'POST',
@@ -83,6 +85,10 @@ function addMsg(text, sender) {
   div.innerText = text;
   document.getElementById('chat').appendChild(div);
   document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+}
+
+function startVoice() {
+  alert('Voice feature agle update me aayega. Abhi type karke bhejein.');
 }
 </script>
 </body>
